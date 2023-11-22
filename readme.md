@@ -29,10 +29,57 @@ php bin/magento pending:prices:approvals: Lista todas as solicitações de alter
 php bin/magento approve:price:change --id=ID: Aprova uma solicitação de alteração de preço.
 php bin/magento edit:price:change --id=ID --new_price=PRICE: Edita o preço pendente de uma solicitação.
 ```
-### Endpoints GraphQL
-Consultar solicitações pendentes: Endpoint para consultar todas as solicitações pendentes de alteração de preço.
-Aprovar alteração de preço: Endpoint para aprovar uma solicitação de alteração de preço.
-Editar solicitação de alteração de preço: Endpoint para editar o preço pendente em uma solicitação.
+## Endpoints GraphQL
+
+### Consultar Solicitações Pendentes
+- **Endpoint**: `listDoubleCheckPricePendingApprovals`
+- **Tipo**: Query
+- **Descrição**: Retorna todos os itens pendentes de aprovação.
+- **Resposta**: `[DoubleCheckPriceItem]`
+- **ACL**: `MagentoModules_DoubleCheckPrice::management`
+- **Resolver**: `MagentoModules\DoubleCheckPrice\Model\Resolver\ListDoubleCheckPricePendingApprovalsResolver`
+
+### Aprovar Alteração de Preço
+- **Endpoint**: `approveDoubleCheckPrice`
+- **Tipo**: Mutation
+- **Descrição**: Aprova um item com base no seu ID.
+- **Argumentos**: `id: Int!`
+- **Resposta**: `DoubleCheckPriceResult`
+- **ACL**: `MagentoModules_DoubleCheckPrice::approve`
+- **Resolver**: `MagentoModules\DoubleCheckPrice\Model\Resolver\ApproveDoubleCheckPriceResolver`
+
+### Excluir Solicitação de Alteração de Preço
+- **Endpoint**: `deleteDoubleCheckPrice`
+- **Tipo**: Mutation
+- **Descrição**: Exclui um item com base no seu ID.
+- **Argumentos**: `id: Int!`
+- **Resposta**: `DoubleCheckPriceResult`
+- **ACL**: `MagentoModules_DoubleCheckPrice::delete`
+- **Resolver**: `MagentoModules\DoubleCheckPrice\Model\Resolver\DeleteDoubleCheckPriceResolver`
+
+### Editar Solicitação de Alteração de Preço
+- **Endpoint**: `editDoubleCheckPrice`
+- **Tipo**: Mutation
+- **Descrição**: Edita o preço de um item com base no seu ID, SKU e novo preço.
+- **Argumentos**: `id: Int!, sku: String!, newPrice: Float!`
+- **Resposta**: `DoubleCheckPriceResult`
+- **ACL**: `MagentoModules_DoubleCheckPrice::edit`
+- **Resolver**: `MagentoModules\DoubleCheckPrice\Model\Resolver\EditDoubleCheckPriceResolver`
+
+### Tipos de Retorno
+
+#### DoubleCheckPriceItem
+- **Campos**:
+    - `id: Int`
+    - `sku: String`
+    - `price: Float`
+    - `status: String`
+
+#### DoubleCheckPriceResult
+- **Campos**:
+    - `success: Boolean`
+    - `message: String`
+
 ### Configuração
 Configure as opções de email no painel administrativo em Stores > Configuration > Double Check Price > Mail Settings.
 ### Licença

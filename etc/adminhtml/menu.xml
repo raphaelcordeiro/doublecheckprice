@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MagentoModules_DoubleCheckPrice::management" sortOrder="100" title="Double Check Price Management"
+             module="MagentoModules_DoubleCheckPrice" parent="Magento_Catalog::catalog"
+             resource="MagentoModules_DoubleCheckPrice::management" translate="title"
+             action="double_check_price/doublecheckprice/index"/>
+    </menu>
+</config>

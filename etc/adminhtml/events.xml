@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="price_change_approved">
+        <observer name="magentoModules_doubleCheckPrice_price_change_observer"
+                  instance="PriceChangeApprovedObserver"/>
+    </event>
+    <event name="new_price_change_request">
+        <observer name="magentoModules_doubleCheckPrice_new_price_change_request_observer"
+                  instance="MagentoModules\DoubleCheckPrice\Observer\NewPriceChangeRequestObserver"/>
+    </event>
+</config>

@@ -1,0 +1,23 @@
+type Query {
+    listDoubleCheckPricePendingApprovals: [DoubleCheckPriceItem] @resolver(class: "MagentoModules\\DoubleCheckPrice\\Model\\Resolver\\ListDoubleCheckPricePendingApprovalsResolver") @doc(description: "Returns all items pending approval") @acl(resource: "MagentoModules_DoubleCheckPrice::management")
+}
+
+type Mutation {
+    approveDoubleCheckPrice(id: Int!): DoubleCheckPriceResult @resolver(class: "MagentoModules\\DoubleCheckPrice\\Model\\Resolver\\ApproveDoubleCheckPriceResolver") @doc(description: "Approves an item based on its ID") @acl(resource: "MagentoModules_DoubleCheckPrice::approve")
+
+    deleteDoubleCheckPrice(id: Int!): DoubleCheckPriceResult @resolver(class: "MagentoModules\\DoubleCheckPrice\\Model\\Resolver\\DeleteDoubleCheckPriceResolver") @doc(description: "Deletes an item based on its ID") @acl(resource: "MagentoModules_DoubleCheckPrice::delete")
+
+    editDoubleCheckPrice(id: Int!, sku: String!, newPrice: Float!): DoubleCheckPriceResult @resolver(class: "MagentoModules\\DoubleCheckPrice\\Model\\Resolver\\EditDoubleCheckPriceResolver") @doc(description: "Edits the price of an item based on its ID, SKU, and new price") @acl(resource: "MagentoModules_DoubleCheckPrice::edit")
+}
+
+type DoubleCheckPriceItem {
+    id: Int
+    sku: String
+    price: Float
+    status: String
+}
+
+type DoubleCheckPriceResult {
+    success: Boolean
+    message: String
+}

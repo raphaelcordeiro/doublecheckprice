@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MagentoModules\DoubleCheckPrice\Api\Data\DoubleCheckPriceInterface"
+                type="MagentoModules\DoubleCheckPrice\Model\Data\DoubleCheckPriceData"/>
+    <preference for="MagentoModules\DoubleCheckPrice\Api\GetDoubleCheckPriceListInterface"
+                type="MagentoModules\DoubleCheckPrice\Query\DoubleCheckPrice\GetListQuery"/>
+    <preference for="MagentoModules\DoubleCheckPrice\Api\Data\DoubleCheckPriceSearchResultsInterface"
+                type="MagentoModules\DoubleCheckPrice\Model\DoubleCheckPriceSearchResults"/>
+    <preference for="MagentoModules\DoubleCheckPrice\Api\NotificationMailDeliveryInterface"
+                type="MagentoModules\DoubleCheckPrice\Model\Mail\NotificationMailDelivery"/>
+    <!--Plugins-->
+    <type name="Magento\Catalog\Model\ProductRepository">
+        <plugin name="magentomodules_doublecheckprice_price_change" type="MagentoModules\DoubleCheckPrice\Plugin\ProductSaveBefore" sortOrder="10"/>
+    </type>
+    <!--Repository-->
+    <preference for="MagentoModules\DoubleCheckPrice\Api\DoubleCheckPriceRepositoryInterface" type="MagentoModules\DoubleCheckPrice\Model\Repository\DoubleCheckPriceRepository" />
+    <!--Commands-->
+
+    <!-- DeleteByIdCommand -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="deleteByIdCommand" xsi:type="object">MagentoModules\DoubleCheckPrice\Console\Command\DeleteByIdCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- ApprovePriceChangeCommand -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="approvePriceChangeCommand" xsi:type="object">MagentoModules\DoubleCheckPrice\Console\Command\ApprovePriceChangeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- EditPriceChangeCommand -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="editPriceChangeCommand" xsi:type="object">MagentoModules\DoubleCheckPrice\Console\Command\EditPriceChangeCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- ListPendingPricesApprovalsCommand -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="listPendingPricesApprovalsCommand" xsi:type="object">MagentoModules\DoubleCheckPrice\Console\Command\ListPendingPricesApprovalsCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

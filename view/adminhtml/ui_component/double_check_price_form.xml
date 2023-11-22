@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">double_check_price_form.double_check_price_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Product Price Change Request</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <namespace>double_check_price_form</namespace>
+        <dataScope>data.general</dataScope>
+        <deps>
+            <dep>double_check_price_form.double_check_price_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="save" class="MagentoModules\DoubleCheckPrice\Block\Form\DoubleCheckPrice\Save"/>
+            <button name="back" class="MagentoModules\DoubleCheckPrice\Block\Form\DoubleCheckPrice\Back"/>
+            <button name="delete" class="MagentoModules\DoubleCheckPrice\Block\Form\DoubleCheckPrice\Delete"/>
+        </buttons>
+    </settings>
+    <dataSource name="double_check_price_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="double_check_price/doublecheckprice/save"/>
+        </settings>
+        <dataProvider class="MagentoModules\DoubleCheckPrice\Ui\DataProvider\DoubleCheckPriceDataProvider"
+                      name="double_check_price_form_data_source">
+            <settings>
+                <requestFieldName>double_check_price_id</requestFieldName>
+                <primaryFieldName>double_check_price_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">General</label>
+        </settings>
+        <field name="double_check_price_id" sortOrder="0" formElement="hidden">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">double_check_price_id</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Entity ID</label>
+                <dataScope>double_check_price_id</dataScope>
+            </settings>
+        </field>
+        <field name="old_price" sortOrder="00" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">old_price</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>float</dataType>
+                <label translate="true">Old Price</label>
+                <dataScope>old_price</dataScope>
+            </settings>
+        </field>
+        <field name="new_price" sortOrder="10" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">new_price</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>float</dataType>
+                <label translate="true">New Price</label>
+                <dataScope>new_price</dataScope>
+            </settings>
+        </field>
+        <field name="product_sku" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product_sku</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Sku</label>
+                <dataScope>product_sku</dataScope>
+            </settings>
+        </field>
+        <field name="user_id" sortOrder="30" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">user_id</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">User Id</label>
+                <dataScope>user_id</dataScope>
+            </settings>
+        </field>
+        <field name="status" sortOrder="40" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">status</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+            </settings>
+        </field>
+        <field name="created_at" sortOrder="50" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">created_at</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Created At</label>
+                <dataScope>created_at</dataScope>
+            </settings>
+        </field>
+        <field name="updated_at" sortOrder="60" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">updated_at</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Updated At</label>
+                <dataScope>updated_at</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

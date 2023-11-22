@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="MagentoModules_DoubleCheckPrice::management" title="Double Check Price Management">
+                <resource id="MagentoModules_DoubleCheckPrice::approve" title="Double Check Price Approval"/>
+                <resource id="MagentoModules_DoubleCheckPrice::delete" title="Double Check Price Delete"/>
+                <resource id="MagentoModules_DoubleCheckPrice::edit" title="Double Check Price Delete"/>
+                <resource id="MagentoModules_DoubleCheckPrice::config_mail_settings" title="Mail Settings"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

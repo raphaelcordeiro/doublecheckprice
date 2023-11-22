@@ -1,0 +1,20 @@
+{
+    "double_check_price": {
+        "column": {
+            "double_check_price_id": true,
+            "old_price": true,
+            "new_price": true,
+            "product_sku": true,
+            "user_id": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "DOUBLE_CHECK_PRICE_DOUBLE_CHECK_PRICE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

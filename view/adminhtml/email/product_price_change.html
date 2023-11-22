@@ -1,0 +1,27 @@
+<!--@subject {{trans "Price Change Requested"}} @-->
+<!--@vars {
+    "userName": "Name of the user who made the price change request",
+    "sku": "Sku of the product for which the price change was requested",
+    "oldPrice": "Old price of the product",
+    "newPrice": "New proposed price for the product",
+    "requestDate": "Date when the price change request was made"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<table class="request-price-change-mail">
+    <tbody>
+    <tr class="request-price-intro">
+        <td>
+            <div class="container-item">
+                <h2>{{trans "A change price request has been submitted for the following product:"}}</h2>
+                <p>{{trans "Requested By: %userName" userName=$userName}}</p>
+                <p>{{trans "Product SKU: %sku" sku=$sku}}</p>
+                <p>{{trans "Old Price: %oldPrice" oldPrice=$oldPrice}}</p>
+                <p>{{trans "New Price: %newPrice" newPrice=$newPrice}}</p>
+                <p>{{trans "Request Date: %requestDate" requestDate=$requestDate}}</p>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{template config_path="design/email/footer_template"}}

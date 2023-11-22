@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/double-check-price/get-list" method="GET">
+        <service class="MagentoModules\DoubleCheckPrice\Api\GetDoubleCheckPriceListInterface" method="execute"/>
+        <resources>
+            <resource ref="MagentoModules_DoubleCheckPrice::management"/>
+        </resources>
+    </route>
+    <route url="/V1/double-check-price/:entityId" method="DELETE">
+        <service class="MagentoModules\DoubleCheckPrice\Api\DeleteDoubleCheckPriceByIdInterface" method="execute"/>
+        <resources>
+            <resource ref="MagentoModules_DoubleCheckPrice::delete"/>
+        </resources>
+    </route>
+    <route url="/V1/double-check-price/edit/:entityId" method="PUT">
+        <service class="MagentoModules\DoubleCheckPrice\Api\EditDoubleCheckPriceInterface" method="execute"/>
+        <resources>
+            <resource ref="MagentoModules_DoubleCheckPrice::edit"/>
+        </resources>
+    </route>
+</routes>

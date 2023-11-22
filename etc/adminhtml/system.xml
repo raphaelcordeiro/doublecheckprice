@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="doublecheckprice" translate="label" sortOrder="10">
+            <label>Double Check Price</label>
+        </tab>
+        <section id="mail_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mail Settings</label>
+            <tab>doublecheckprice</tab>
+            <resource>MagentoModules_DoubleCheckPrice::config_mail_settings</resource>
+            <group id="mail_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Delivery Mail Settings</label>
+                <field id="enable_delivery_mail" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            <field id="mail_sender" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mail Sender</label>
+                <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+            </field>
+            <field id="mail_recipient" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mail Recipient</label>
+                <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+            </field>
+            <field id="mail_template" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Mail Template</label>
+                <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+            </field>
+            </group>
+        </section>
+    </system>
+</config>

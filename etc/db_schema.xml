@@ -10,7 +10,7 @@
                 comment="New Price Column"/>
         <column xsi:type="varchar" name="product_sku" length="64" nullable="false" comment="Product Sku"/>
         <column xsi:type="varchar" name="attribute" nullable="false" default="price" comment="Product Attribute"/>
-        <column xsi:type="int" name="user_id" padding="10" unsigned="true" nullable="false" comment="User ID"/>
+        <column xsi:type="varchar" name="username" length="64" nullable="false" comment="Username"/>
         <column xsi:type="int" name="status" padding="10" default="0" unsigned="true" nullable="false" comment="Status"/>
         <column xsi:type="datetime" name="created_at" default="CURRENT_TIMESTAMP" on_update="false" nullable="false" comment="Created At"/>
         <column xsi:type="datetime" name="updated_at" default="CURRENT_TIMESTAMP" on_update="true" nullable="false" comment="Updated At"/>
@@ -21,6 +21,6 @@
             <column name="double_check_price_id"/>
         </constraint>
         <constraint xsi:type="foreign" referenceId="DOUBLE_CHECK_PRICE_SKU_CATALOG_PRODUCT_ENTITY_SKU" table="double_check_price" column="product_sku" referenceTable="catalog_product_entity" referenceColumn="sku" onDelete="CASCADE"/>
-        <constraint xsi:type="foreign" referenceId="DOUBLE_CHECK_PRICE_USER_ID_ADMIN_USER_USER_ID" table="double_check_price" column="user_id" referenceTable="admin_user" referenceColumn="user_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="DOUBLE_CHECK_PRICE_USERNAME_ADMIN_USER_USERNAME" table="double_check_price" column="username" referenceTable="admin_user" referenceColumn="username" onDelete="CASCADE"/>
     </table>
 </schema>

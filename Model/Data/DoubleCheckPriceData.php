@@ -121,26 +121,25 @@ class DoubleCheckPriceData extends DataObject implements DoubleCheckPriceInterfa
     }
 
     /**
-     * Getter for UserId.
+     * Getter for Username.
      *
      * @return int|null
      */
-    final public function getUserId(): ?int
+    final public function getUserName(): ?int
     {
-        return $this->getData(self::USER_ID) === null ? null
-            : (int)$this->getData(self::USER_ID);
+        return $this->getData(self::USERNAME);
     }
 
     /**
-     * Setter for UserId.
+     * Setter for Username.
      *
-     * @param int|null $userId
+     * @param string|null $username
      *
      * @return DoubleCheckPriceInterface
      */
-    final public function setUserId(?int $userId): DoubleCheckPriceInterface
+    final public function setUserName(?string $username): DoubleCheckPriceInterface
     {
-        return $this->setData(self::USER_ID, $userId);
+        return $this->setData(self::USERNAME, $username);
     }
 
     /**

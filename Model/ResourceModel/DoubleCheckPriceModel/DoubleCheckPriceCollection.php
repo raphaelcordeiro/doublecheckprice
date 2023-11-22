@@ -30,7 +30,7 @@ class DoubleCheckPriceCollection extends AbstractCollection
 
         $this->getSelect()->join(
             ['admin_user' => $this->getTable('admin_user')],
-            'main_table.user_id = admin_user.user_id',
+            'main_table.username = admin_user.username',
             ['user_firstname' => 'firstname', 'user_lastname' => 'lastname']
         );
 

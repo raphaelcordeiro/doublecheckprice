@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="../../../../dev/tests/unit/framework/bootstrap.php">
+    <testsuite name="MagentoModules_DoubleCheckPrice_Unit_Tests">
+        <directory suffix="Test.php">Test/Unit</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">Model</directory>
+            <directory suffix=".php">Controller</directory>
+            <directory suffix=".php">Helper</directory>
+            <directory suffix=".php">Observer</directory>
+            <directory suffix=".php">Plugin</directory>
+            <directory suffix=".php">Controller</directory>
+            <directory suffix=".php">Console</directory>
+        </whitelist>
+    </filter>
+</phpunit>

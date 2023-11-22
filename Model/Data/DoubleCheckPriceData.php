@@ -123,9 +123,9 @@ class DoubleCheckPriceData extends DataObject implements DoubleCheckPriceInterfa
     /**
      * Getter for Username.
      *
-     * @return int|null
+     * @return string|null
      */
-    final public function getUserName(): ?int
+    final public function getUserName(): ?string
     {
         return $this->getData(self::USERNAME);
     }

@@ -35,7 +35,7 @@ class NotificationMailDelivery implements NotificationMailDeliveryInterface
      * @return void
      * @throws Exception
      */
-    final public function notificationMail(int $userId, string $sku, string $priceOld, string $priceNew, string $requestDate): void
+    public function notificationMail(int $userId, string $sku, string $priceOld, string $priceNew, string $requestDate): void
     {
 
         if(!$userId || !$sku || !$priceOld || !$priceNew || !$requestDate) {

@@ -3,14 +3,29 @@
 
 O módulo "Double Check Price" para Magento adiciona uma camada de segurança adicional para alterações de preços de produtos no painel administrativo. Este módulo permite que alterações no preço de um produto sejam primeiramente salvas para aprovação, antes de serem efetivamente aplicadas. Isso garante que todas as mudanças sejam revisadas e aprovadas por um usuário autorizado, como um gerente ou administrador.
 
-### Características
-Bloqueio de Modificação Imediata do Preço: Alterações no preço de um produto são bloqueadas para revisão.
-Grid de Aprovação: Uma grid no painel administrativo exibe todas as solicitações de alteração de preço pendentes.
-Funcionalidade de Aprovação: Permite a aprovação ou reprovação de mudanças de preço.
-Notificação por Email: Envia notificações por email quando uma alteração de preço é solicitada.
-Exportação da Grid: Permite a exportação dos dados da grid de aprovação.
-CLI: Comandos CLI para listar e gerenciar alterações de preço pendentes.
-Endpoints GraphQL: Fornece endpoints para integração com sistemas de ERP.
+## Características
+
+### Bloqueio de Modificação Imediata do Preço
+- **Descrição**: Alterações no preço de um produto são bloqueadas para revisão.
+
+### Grid de Aprovação
+- **Descrição**: Uma grid no painel administrativo exibe todas as solicitações de alteração de preço pendentes.
+
+### Funcionalidade de Aprovação
+- **Descrição**: Permite a aprovação ou reprovação de mudanças de preço.
+
+### Notificação por Email
+- **Descrição**: Envia notificações por email quando uma alteração de preço é solicitada.
+
+### Exportação da Grid
+- **Descrição**: Permite a exportação dos dados da grid de aprovação.
+
+### CLI
+- **Descrição**: Comandos CLI para listar e gerenciar alterações de preço pendentes.
+
+### Endpoints GraphQL
+- **Descrição**: Fornece endpoints para integração com sistemas de ERP.
+
 
 ### Instalação
 Copie o módulo para o diretório <Magento_root>/app/code/MagentoModules/DoubleCheckPrice.

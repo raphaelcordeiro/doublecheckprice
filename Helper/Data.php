@@ -114,13 +114,13 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param  int $userId
+     * @param  string $username
      * @return User|null
      */
-    public function getUserById(int $userId): ?User
+    public function getUserByUsername(string $username): ?User
     {
         try {
-            $user = $this->userFactory->create()->load($userId);
+            $user = $this->userFactory->create()->loadByUsername($username);
             return $user->getId() ? $user : null;
         } catch(NoSuchEntityException|Exception $e){
             $this->logger->error($e->getMessage());

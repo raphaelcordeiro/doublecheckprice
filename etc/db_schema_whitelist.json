@@ -5,7 +5,7 @@
             "old_price": true,
             "new_price": true,
             "product_sku": true,
-            "user_id": true,
+            "username": true,
             "status": true,
             "created_at": true,
             "updated_at": true

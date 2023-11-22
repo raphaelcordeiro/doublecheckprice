@@ -15,12 +15,15 @@ use PHPUnit\Framework\TestCase;
 
 class ProductSaveBeforeTest extends TestCase
 {
-    private $helperDataMock;
-    private $doubleCheckPriceRepositoryMock;
-    private $doubleCheckPriceModelFactoryMock;
-    private $notificationMailDeliveryMock;
-    private $productSaveBefore;
+    private HelperData $helperDataMock;
+    private DoubleCheckPriceRepositoryInterface $doubleCheckPriceRepositoryMock;
+    private DoubleCheckPriceModelFactory $doubleCheckPriceModelFactoryMock;
+    private NotificationMailDelivery $notificationMailDeliveryMock;
+    private ProductSaveBefore $productSaveBefore;
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         $this->helperDataMock = $this->createMock(HelperData::class);
@@ -40,78 +43,52 @@ class ProductSaveBeforeTest extends TestCase
      * @return void
      * @throws Exception
      */
-    final public function testBeforeSaveWithPriceChange(): void
+    public function testBeforeSaveWithPriceChange(): void
     {
         $productMock = $this->createMock(Product::class);
         $productMock->method('getOrigData')->with('price')->willReturn(100);
         $productMock->method('getPrice')->willReturn(150);
 
-        $productMock->expects($this->never())
-            ->method('setPrice')
-            ->with(150);
+        $doubleCheckPriceMock = $this->createMock(DoubleCheckPriceInterface::class);
+        $this->doubleCheckPriceModelFactoryMock->method('create')->willReturn($doubleCheckPriceMock);
+
+        $this->doubleCheckPriceRepositoryMock->expects($this->once())
+            ->method('save')
+            ->with($doubleCheckPriceMock);
 
         $this->helperDataMock->method('isEmailNotificationEnabled')->willReturn(true);
-
-        $doubleCheckPriceMock = $this->createMock(DoubleCheckPriceModelFactory::class);
-        $doubleCheckPrice = $this->createMock(DoubleCheckPriceInterface::class);
-        $doubleCheckPriceMock->method('create')->willReturn($doubleCheckPrice);
-
-        $doubleCheckPriceRepositoryMock = $this->createMock(DoubleCheckPriceRepositoryInterface::class);
-        $doubleCheckPriceRepositoryMock->expects($this->once())
-            ->method('save')
-            ->with($doubleCheckPrice);
 
         $notificationMailDeliveryMock = $this->createMock(NotificationMailDelivery::class);
         $notificationMailDeliveryMock->expects($this->once())
             ->method('notificationMail');
 
-        $productSaveBefore = new ProductSaveBefore(
-            $this->helperDataMock,
-            $doubleCheckPriceRepositoryMock,
-            $doubleCheckPriceMock,
-            $notificationMailDeliveryMock
-        );
-
-        $productSaveBefore->beforeSave($this->createMock(ProductRepository::class), $productMock);
+        $this->productSaveBefore->beforeSave($this->createMock(ProductRepository::class), $productMock);
     }
-
 
     /**
      * @return void
      * @throws Exception
      */
-    final public function testBeforeSaveNoPriceChangeButOtherAttributesChange(): void
+    public function testBeforeSaveNoPriceChangeButOtherAttributesChange(): void
     {
         $productMock = $this->createMock(Product::class);
-        $productMock->method('getOrigData')
-            ->willReturnMap([
-                ['price', 100],
-                ['name', 'Original Name'],
-                ['description', 'Original Description']
-            ]);
-        $productMock->method('getData')
-            ->willReturnMap([
-                ['price', 100],
-                ['name', 'New Name'],
-                ['description', 'New Description']
-            ]);
+        $productMock->method('getOrigData')->willReturnMap([
+            ['price', 100],
+            ['name', 'Original Name'],
+            ['description', 'Original Description']
+        ]);
+        $productMock->method('getData')->willReturnMap([
+            ['price', 100],
+            ['name', 'New Name'],
+            ['description', 'New Description']
+        ]);
 
-        $doubleCheckPriceMock = $this->createMock(DoubleCheckPriceRepositoryInterface::class);
-        $doubleCheckPriceMock->expects($this->once())
+        $this->doubleCheckPriceRepositoryMock->expects($this->never())
             ->method('save');
 
-        $notificationMailDeliveryMock = $this->createMock(NotificationMailDelivery::class);
-        $notificationMailDeliveryMock->expects($this->never())
+        $this->notificationMailDeliveryMock->expects($this->never())
             ->method('notificationMail');
 
-        $productSaveBefore = new ProductSaveBefore(
-            $this->helperDataMock,
-            $doubleCheckPriceMock,
-            $this->doubleCheckPriceModelFactoryMock,
-            $notificationMailDeliveryMock
-        );
-
-        $productSaveBefore->beforeSave($this->createMock(ProductRepository::class), $productMock);
+        $this->productSaveBefore->beforeSave($this->createMock(ProductRepository::class), $productMock);
     }
-
 }

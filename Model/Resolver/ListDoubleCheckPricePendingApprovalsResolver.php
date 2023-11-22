@@ -80,7 +80,7 @@ class ListDoubleCheckPricePendingApprovalsResolver implements ResolverInterface
 
             $items = [];
             foreach ($collection as $item) {
-                $user = $this->dataHelper->getUserById($item->getUserId());
+                $user = $this->dataHelper->getUserByUsername($item->getUserName());
                 $userName = $user ? $user->getName() : 'N/A';
 
                 $items[] = [

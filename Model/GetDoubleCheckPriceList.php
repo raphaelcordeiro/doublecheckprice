@@ -3,7 +3,6 @@
 namespace MagentoModules\DoubleCheckPrice\Model;
 
 use Exception;
-use MagentoModules\DoubleCheckPrice\Api\Data\DoubleCheckPriceSearchResultsInterface;
 use MagentoModules\DoubleCheckPrice\Api\GetDoubleCheckPriceListInterface;
 use MagentoModules\DoubleCheckPrice\Model\ResourceModel\DoubleCheckPriceModel\DoubleCheckPriceCollectionFactory as CollectionFactory;
 use MagentoModules\DoubleCheckPrice\Helper\Data as DataHelper;

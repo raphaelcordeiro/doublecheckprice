@@ -51,7 +51,7 @@ class ListPendingPricesApprovalsCommand extends Command
         $table->setHeaders(['ID', 'Attribute', 'Product SKU', 'Requester','Old Price', 'New Price', 'Request Date']);
 
         foreach ($collection as $item) {
-            $user = $this->dataHelper->getUserById($item->getUserId());
+            $user = $this->dataHelper->getUserByUsername($item->getUserName());
             $userName = $user ? $user->getName() : 'N/A';
 
             $table->addRow(

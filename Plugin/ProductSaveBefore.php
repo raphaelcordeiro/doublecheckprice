@@ -57,7 +57,7 @@ class ProductSaveBefore
     {
         $originalPrice = $product->getOrigData('price');
         $currentPrice = $product->getPrice();
-        $loggedUserId = $this->helperData->getLoggedUserId();
+        $loggedUsername = $this->helperData->getLoggedUserName();
         $sku = $product->getSku();
 
         if ($originalPrice !== null && $originalPrice != $currentPrice) {
@@ -65,12 +65,12 @@ class ProductSaveBefore
                 ->setNewPrice($currentPrice)
                 ->setOldPrice($originalPrice)
                 ->setSku($sku)
-                ->setUserId($loggedUserId)
+                ->setUserName($loggedUsername)
                 ->setStatus(0);
 
             $this->doubleCheckPriceRepository->save($doubleCheckPrice);
             if ($this->helperData->isEmailNotificationEnabled()) {
-                $this->notificationMailDelivery->notificationMail($loggedUserId, $sku, $originalPrice, $currentPrice, date('Y-m-d H:i:s'));
+                $this->notificationMailDelivery->notificationMail($loggedUsername, $sku, $originalPrice, $currentPrice, date('Y-m-d H:i:s'));
             }
             $product->setPrice($originalPrice);
         }

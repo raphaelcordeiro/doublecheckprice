@@ -12,7 +12,7 @@ interface DoubleCheckPriceInterface
     public const NEW_PRICE = "new_price";
     public const SKU = "product_sku";
     public const ATTRIBUTE = 'attribute';
-    public const USER_ID = "user_id";
+    public const USERNAME = "username";
     public const STATUS = "status";
     public const CREATED_AT = "created_at";
     public const UPDATED_AT = "updated_at";
@@ -98,20 +98,20 @@ interface DoubleCheckPriceInterface
     public function setAttribute(?string $attribute): DoubleCheckPriceInterface;
 
     /**
-     * Getter for UserId.
+     * Getter for Username.
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getUserId(): ?int;
+    public function getUserName(): ?string;
 
     /**
-     * Setter for UserId.
+     * Setter for Username.
      *
-     * @param int|null $userId
+     * @param string|null $username
      *
      * @return DoubleCheckPriceInterface
      */
-    public function setUserId(?int $userId): DoubleCheckPriceInterface;
+    public function setUserName(?string $username): DoubleCheckPriceInterface;
 
     /**
      * Getter for Status.

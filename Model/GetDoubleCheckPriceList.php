@@ -3,7 +3,6 @@
 namespace MagentoModules\DoubleCheckPrice\Model;
 
 use Exception;
-use MagentoModules\DoubleCheckPrice\Api\Data\DoubleCheckPriceSearchResultsInterface;
 use MagentoModules\DoubleCheckPrice\Api\GetDoubleCheckPriceListInterface;
 use MagentoModules\DoubleCheckPrice\Model\ResourceModel\DoubleCheckPriceModel\DoubleCheckPriceCollectionFactory as CollectionFactory;
 use MagentoModules\DoubleCheckPrice\Helper\Data as DataHelper;
@@ -45,8 +44,8 @@ class GetDoubleCheckPriceList implements GetDoubleCheckPriceListInterface
         }
         $items = [];
         foreach ($collection as $item) {
-            $user = $this->dataHelper->getUserById($item->getUserId());
-            $userName = $user ? $user->getName() : 'N/A';
+            $user = $this->dataHelper->getUserByUsername($item->getUserName());
+            $userName = $user->getName();
 
             $items[] = [
                 'double_check_price_id' => $item->getDoubleCheckPriceId(),

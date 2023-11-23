@@ -8,9 +8,9 @@ use MagentoModules\DoubleCheckPrice\Helper\Data as HelperData;
 
 class NotificationMailDelivery implements NotificationMailDeliveryInterface
 {
-     CONST MAIL_SENDER_CONFIG = 'mail_settings/mail_settings/mail_sender';
-     CONST MAIL_RECIPIENT_CONFIG = 'mail_settings/mail_settings/mail_recipient';
-     CONST MAIL_TEMPLATE_CONFIG = 'mail_settings/mail_settings/mail_template';
+    CONST MAIL_SENDER_CONFIG = 'mail_settings/mail_settings/mail_sender';
+    CONST MAIL_RECIPIENT_CONFIG = 'mail_settings/mail_settings/mail_recipient';
+    CONST MAIL_TEMPLATE_CONFIG = 'mail_settings/mail_settings/mail_template';
 
     /**
      * @var HelperData
@@ -27,7 +27,7 @@ class NotificationMailDelivery implements NotificationMailDeliveryInterface
     }
 
     /**
-     * @param  int    $userId
+     * @param  string    $userName
      * @param  string $sku
      * @param  string $priceOld
      * @param  string $priceNew
@@ -35,14 +35,14 @@ class NotificationMailDelivery implements NotificationMailDeliveryInterface
      * @return void
      * @throws Exception
      */
-    final public function notificationMail(int $userId, string $sku, string $priceOld, string $priceNew, string $requestDate): void
+    public function notificationMail(string $userName, string $sku, string $priceOld, string $priceNew, string $requestDate): void
     {
 
-        if(!$userId || !$sku || !$priceOld || !$priceNew || !$requestDate) {
+        if(!$userName || !$sku || !$priceOld || !$priceNew || !$requestDate) {
             throw new Exception('Not all required parameters are provided');
         }
 
-        $user = $this->helperData->getUserById($userId);
+        $user = $this->helperData->getUserByUsername($userName);
 
         $templateVars = [
             'sku' => $sku,

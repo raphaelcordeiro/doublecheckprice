@@ -71,11 +71,11 @@ class PriceChangeApprovedObserver implements ObserverInterface
             throw new NoSuchEntityException(
                 __(
                     $entityNotFound ? 'Price Change Request with id "%1" does not exist.' : 'Product with sku "%1" does not exist.',
-                    $entityNotFound ? $priceChangeId : $requestPriceChange->getSku()
+                    $entityNotFound
                 )
             );
         } catch (CouldNotSaveException|InputException|StateException $e) {
-            throw new CouldNotSaveException(__('Could not save product with sku "%1"', $requestPriceChange->getSku()));
+            throw new CouldNotSaveException(__('Could not save product with sku "%1"'));
         }
     }
 

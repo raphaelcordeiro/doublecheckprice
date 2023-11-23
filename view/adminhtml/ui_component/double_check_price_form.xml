@@ -84,16 +84,16 @@
                 <dataScope>product_sku</dataScope>
             </settings>
         </field>
-        <field name="user_id" sortOrder="30" formElement="input">
+        <field name="username" sortOrder="30" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">user_id</item>
+                    <item name="source" xsi:type="string">username</item>
                 </item>
             </argument>
             <settings>
-                <dataType>int</dataType>
-                <label translate="true">User Id</label>
-                <dataScope>user_id</dataScope>
+                <dataType>string</dataType>
+                <label translate="true">Username</label>
+                <dataScope>username</dataScope>
             </settings>
         </field>
         <field name="status" sortOrder="40" formElement="input">

@@ -83,12 +83,12 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    final public function getLoggedUserId() : ?int
+    public function getLoggedUserName() : ?string
     {
         if ($this->adminSession->isLoggedIn()) {
-            return $this->adminSession->getUser()->getId();
+            return $this->adminSession->getUser()->getUserName();
         }
         return null;
     }
@@ -98,33 +98,33 @@ class Data extends AbstractHelper
      * @param  array  $data
      * @return void
      */
-    final public function dispatchEvent(string $eventName, array $data = []) : void
+    public function dispatchEvent(string $eventName, array $data = []) : void
     {
         $this->eventManager->dispatch($eventName, $data);
     }
 
     /**
-     * @param  float $price
-     * @return string
+     * @param float $price
+     * @return float
      */
-    final public function formatPrice(float $price): string
+    public function formatPrice(float $price): float
     {
         $priceFormat = $this->localeFormat->getPriceFormat();
         return number_format($price, $priceFormat['precision'], $priceFormat['decimalSymbol'], $priceFormat['groupSymbol']);
     }
 
     /**
-     * @param  int $userId
-     * @return User|null
+     * @param string $username
+     * @return User
+     * @throws NoSuchEntityException
      */
-    final public function getUserById(int $userId): ?User
+    public function getUserByUsername(string $username): User
     {
         try {
-            $user = $this->userFactory->create()->load($userId);
-            return $user->getId() ? $user : null;
+            return $this->userFactory->create()->loadByUsername($username);
         } catch(NoSuchEntityException|Exception $e){
             $this->logger->error($e->getMessage());
-            return null;
+            throw new NoSuchEntityException(__('User not found.'));
         }
     }
 
@@ -134,7 +134,7 @@ class Data extends AbstractHelper
      * @param  string|null $scopeCode
      * @return mixed
      */
-    final public function getConfigValue(string $path, string $scopeType = ScopeInterface::SCOPE_STORE, string $scopeCode = null): mixed
+    public function getConfigValue(string $path, string $scopeType = ScopeInterface::SCOPE_STORE, string $scopeCode = null): mixed
     {
         try{
             return $this->scopeConfig->getValue($path, $scopeType, $scopeCode);
@@ -147,7 +147,7 @@ class Data extends AbstractHelper
     /**
      * @return bool
      */
-    final public function isEmailNotificationEnabled(): bool
+    public function isEmailNotificationEnabled(): bool
     {
         return $this->getConfigValue('mail_settings/mail_settings/mail_sender');
     }
@@ -158,7 +158,7 @@ class Data extends AbstractHelper
      * @param string $recipient
      * @param string $mailTemplate
      */
-    final public function sendMail(array $templateVars, string $mailSender, string $recipient, string $mailTemplate) : void
+    public function sendMail(array $templateVars, string $mailSender, string $recipient, string $mailTemplate) : void
     {
 
         try {

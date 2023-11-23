@@ -11,8 +11,10 @@
     <preference for="MagentoModules\DoubleCheckPrice\Api\NotificationMailDeliveryInterface"
                 type="MagentoModules\DoubleCheckPrice\Model\Mail\NotificationMailDelivery"/>
     <!--Plugins-->
-    <type name="Magento\Catalog\Model\ProductRepository">
-        <plugin name="magentomodules_doublecheckprice_price_change" type="MagentoModules\DoubleCheckPrice\Plugin\ProductSaveBefore" sortOrder="10"/>
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="product_price_change_doublecheck"
+                type="MagentoModules\DoubleCheckPrice\Plugin\ProductSaveBefore"
+                sortOrder="10"/>
     </type>
     <!--Repository-->
     <preference for="MagentoModules\DoubleCheckPrice\Api\DoubleCheckPriceRepositoryInterface" type="MagentoModules\DoubleCheckPrice\Model\Repository\DoubleCheckPriceRepository" />

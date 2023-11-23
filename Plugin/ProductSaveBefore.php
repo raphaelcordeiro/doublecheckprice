@@ -3,8 +3,9 @@
 namespace MagentoModules\DoubleCheckPrice\Plugin;
 
 use Exception;
+use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Product;
-use Magento\Catalog\Model\ProductRepository;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use MagentoModules\DoubleCheckPrice\Api\DoubleCheckPriceRepositoryInterface;
 use MagentoModules\DoubleCheckPrice\Model\Data\DoubleCheckPriceDataFactory as DoubleCheckPriceModelFactory;
 use MagentoModules\DoubleCheckPrice\Helper\Data as HelperData;
@@ -48,12 +49,12 @@ class ProductSaveBefore
     }
 
     /**
-     * @param  ProductRepository $subject
+     * @param  ProductRepositoryInterface $subject
      * @param  Product           $product
      * @return void
      * @throws Exception
      */
-    final public function beforeSave(ProductRepository $subject, Product $product): void
+    final public function beforeSave(ProductRepositoryInterface $subject, ProductInterface $product): void
     {
         $originalPrice = $product->getOrigData('price');
         $currentPrice = $product->getPrice();

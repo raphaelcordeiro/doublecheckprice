@@ -4,7 +4,6 @@ namespace MagentoModules\DoubleCheckPrice\Plugin;
 
 use Exception;
 use Magento\Catalog\Api\Data\ProductInterface;
-use Magento\Catalog\Model\Product;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use MagentoModules\DoubleCheckPrice\Api\DoubleCheckPriceRepositoryInterface;
 use MagentoModules\DoubleCheckPrice\Model\Data\DoubleCheckPriceDataFactory as DoubleCheckPriceModelFactory;
@@ -50,7 +49,7 @@ class ProductSaveBefore
 
     /**
      * @param  ProductRepositoryInterface $subject
-     * @param  Product           $product
+     * @param  ProductInterface           $product
      * @return void
      * @throws Exception
      */

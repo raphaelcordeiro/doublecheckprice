@@ -23,6 +23,7 @@ class DoubleCheckPriceBlockActions extends Column
      * Url paths.
      */
     private const EDIT_URL_PATH = 'double_check_price/doublecheckprice/edit';
+    private const APPROVE_URL_PATH = 'double_check_price/doublecheckprice/approve';
     private const DELETE_URL_PATH = 'double_check_price/doublecheckprice/delete';
 
     /**
@@ -75,6 +76,11 @@ class DoubleCheckPriceBlockActions extends Column
                 if (isset($item[DoubleCheckPriceInterface::DOUBLE_CHECK_PRICE_ID])) {
                     $entityName = static::ENTITY_NAME;
                     $urlData = [DoubleCheckPriceInterface::DOUBLE_CHECK_PRICE_ID => $item[DoubleCheckPriceInterface::DOUBLE_CHECK_PRICE_ID]];
+
+                    if ($this->authorization->isAllowed('MagentoModules_DoubleCheckPrice::approve')) {
+                        $editUrl = $this->urlBuilder->getUrl(static::APPROVE_URL_PATH, $urlData);
+                        $item[$this->getData('name')]['Approve'] = $this->getActionData($editUrl, (string)__('Approve'));
+                    }
 
                     if ($this->authorization->isAllowed('MagentoModules_DoubleCheckPrice::edit')) {
                         $editUrl = $this->urlBuilder->getUrl(static::EDIT_URL_PATH, $urlData);

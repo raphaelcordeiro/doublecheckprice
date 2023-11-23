@@ -4,7 +4,7 @@ namespace MagentoModules\DoubleCheckPrice\Ui\DataProvider;
 
 use Magento\Framework\Api\Search\SearchResultInterface;
 use MagentoModules\DoubleCheckPrice\Api\Data\DoubleCheckPriceInterface;
-use MagentoModules\DoubleCheckPrice\Api\GetDoubleCheckPriceListInterface;
+use MagentoModules\DoubleCheckPrice\Api\GetListQueryInterface;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\Search\ReportingInterface;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder;
@@ -18,9 +18,9 @@ use Magento\Ui\DataProvider\SearchResultFactory;
 class DoubleCheckPriceDataProvider extends DataProvider
 {
     /**
-     * @var GetDoubleCheckPriceListInterface
+     * @var GetListQueryInterface
      */
-    private GetDoubleCheckPriceListInterface $getListQuery;
+    private GetListQueryInterface $getListQuery;
 
     /**
      * @var SearchResultFactory
@@ -40,7 +40,7 @@ class DoubleCheckPriceDataProvider extends DataProvider
      * @param SearchCriteriaBuilder            $searchCriteriaBuilder
      * @param RequestInterface                 $request
      * @param FilterBuilder                    $filterBuilder
-     * @param GetDoubleCheckPriceListInterface $getListQuery
+     * @param GetListQueryInterface            $getListQuery
      * @param SearchResultFactory              $searchResultFactory
      * @param array                            $meta
      * @param array                            $data
@@ -53,7 +53,7 @@ class DoubleCheckPriceDataProvider extends DataProvider
         SearchCriteriaBuilder $searchCriteriaBuilder,
         RequestInterface $request,
         FilterBuilder $filterBuilder,
-        GetDoubleCheckPriceListInterface $getListQuery,
+        GetListQueryInterface $getListQuery,
         SearchResultFactory $searchResultFactory,
         array $meta = [],
         array $data = []

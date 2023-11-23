@@ -79,7 +79,7 @@
                 <label translate="true">Sku</label>
             </settings>
         </column>
-        <column name="full_name" class="MagentoModules\DoubleCheckPrice\Ui\Component\Listing\Column\FullName">
+        <column name="username" class="MagentoModules\DoubleCheckPrice\Ui\Component\Listing\Column\FullName">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">Requester Name</label>

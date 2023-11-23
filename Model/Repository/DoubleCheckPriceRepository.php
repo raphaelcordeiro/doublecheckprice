@@ -2,6 +2,7 @@
 
 namespace MagentoModules\DoubleCheckPrice\Model\Repository;
 
+use Exception;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\CouldNotDeleteException;
@@ -36,7 +37,7 @@ class DoubleCheckPriceRepository implements DoubleCheckPriceRepositoryInterface
     {
         try {
             $this->doubleCheckPriceResource->save($doubleCheckPrice);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new CouldNotSaveException(__('Unable to save Price Change Request'), $e);
         }
         return $doubleCheckPrice;
@@ -50,9 +51,9 @@ class DoubleCheckPriceRepository implements DoubleCheckPriceRepositoryInterface
     final public function getById(int $entityId): DoubleCheckPriceInterface
     {
         $doubleCheckPrice = $this->doubleCheckPriceModelFactory->create();
-        $this->doubleCheckPriceResource->load($doubleCheckPrice, $entityId);
-
-        if (!$doubleCheckPrice->getId()) {
+        try {
+            $this->doubleCheckPriceResource->load($doubleCheckPrice, $entityId);
+        } catch (NoSuchEntityException|Exception $e){
             throw new NoSuchEntityException(__('Unable to find Price Change Request with ID "%1"', $entityId));
         }
 
@@ -68,7 +69,7 @@ class DoubleCheckPriceRepository implements DoubleCheckPriceRepositoryInterface
     {
         try {
             $this->doubleCheckPriceResource->delete($doubleCheckPrice);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new CouldNotDeleteException(__('Unable to delete Price Change Request'), $e);
         }
     }

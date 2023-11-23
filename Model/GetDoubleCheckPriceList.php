@@ -46,7 +46,7 @@ class GetDoubleCheckPriceList implements GetDoubleCheckPriceListInterface
         $items = [];
         foreach ($collection as $item) {
             $user = $this->dataHelper->getUserByUsername($item->getUserName());
-            $userName = $user ? $user->getName() : 'N/A';
+            $userName = $user->getName();
 
             $items[] = [
                 'double_check_price_id' => $item->getDoubleCheckPriceId(),

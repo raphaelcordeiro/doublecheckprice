@@ -83,12 +83,12 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getLoggedUserId() : ?int
+    public function getLoggedUserName() : ?string
     {
         if ($this->adminSession->isLoggedIn()) {
-            return $this->adminSession->getUser()->getId();
+            return $this->adminSession->getUser()->getUserName();
         }
         return null;
     }
@@ -104,27 +104,27 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param  float $price
-     * @return string
+     * @param float $price
+     * @return float
      */
-    public function formatPrice(float $price): string
+    public function formatPrice(float $price): float
     {
         $priceFormat = $this->localeFormat->getPriceFormat();
         return number_format($price, $priceFormat['precision'], $priceFormat['decimalSymbol'], $priceFormat['groupSymbol']);
     }
 
     /**
-     * @param  string $username
-     * @return User|null
+     * @param string $username
+     * @return User
+     * @throws NoSuchEntityException
      */
-    public function getUserByUsername(string $username): ?User
+    public function getUserByUsername(string $username): User
     {
         try {
-            $user = $this->userFactory->create()->loadByUsername($username);
-            return $user->getId() ? $user : null;
+            return $this->userFactory->create()->loadByUsername($username);
         } catch(NoSuchEntityException|Exception $e){
             $this->logger->error($e->getMessage());
-            return null;
+            throw new NoSuchEntityException(__('User not found.'));
         }
     }
 

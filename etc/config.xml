@@ -3,12 +3,12 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <mail_settings>
-            <mail_settings>
+            <delivery_mail_settings>
                 <enable_delivery_mail>1</enable_delivery_mail>
-            </mail_settings>
-            <mail_sender>general</mail_sender>
-            <mail_recipient>general</mail_recipient>
-            <mail_template>product_price_change</mail_template>
+                <mail_sender>general</mail_sender>
+                <mail_recipient>general</mail_recipient>
+                <mail_template>mail_settings_delivery_mail_settings_mail_template</mail_template>
+            </delivery_mail_settings>
         </mail_settings>
     </default>
 </config>

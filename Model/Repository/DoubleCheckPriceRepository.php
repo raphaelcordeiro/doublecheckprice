@@ -44,17 +44,17 @@ class DoubleCheckPriceRepository implements DoubleCheckPriceRepositoryInterface
     }
 
     /**
-     * @param  int $entityId
+     * @param int $entityId
      * @return DoubleCheckPriceInterface
-     * @throws NoSuchEntityException
+     * @throws Exception
      */
     final public function getById(int $entityId): DoubleCheckPriceInterface
     {
         $doubleCheckPrice = $this->doubleCheckPriceModelFactory->create();
         try {
             $this->doubleCheckPriceResource->load($doubleCheckPrice, $entityId);
-        } catch (NoSuchEntityException|Exception $e){
-            throw new NoSuchEntityException(__('Unable to find Price Change Request with ID "%1"', $entityId));
+        } catch (Exception $e){
+            throw new Exception(__('Unable to find Price Change Request with ID "%1"', $entityId));
         }
 
         return $doubleCheckPrice;

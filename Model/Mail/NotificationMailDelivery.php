@@ -8,9 +8,9 @@ use MagentoModules\DoubleCheckPrice\Helper\Data as HelperData;
 
 class NotificationMailDelivery implements NotificationMailDeliveryInterface
 {
-     CONST MAIL_SENDER_CONFIG = 'mail_settings/mail_settings/mail_sender';
-     CONST MAIL_RECIPIENT_CONFIG = 'mail_settings/mail_settings/mail_recipient';
-     CONST MAIL_TEMPLATE_CONFIG = 'mail_settings/mail_settings/mail_template';
+    CONST MAIL_SENDER_CONFIG = 'mail_settings/mail_settings/mail_sender';
+    CONST MAIL_RECIPIENT_CONFIG = 'mail_settings/mail_settings/mail_recipient';
+    CONST MAIL_TEMPLATE_CONFIG = 'mail_settings/mail_settings/mail_template';
 
     /**
      * @var HelperData

@@ -108,5 +108,14 @@
                 <indexField>double_check_price_id</indexField>
             </settings>
         </actionsColumn>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                    <item name="indexField" xsi:type="string">double_check_price_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
     </columns>
 </listing>

@@ -122,9 +122,9 @@ class Data extends AbstractHelper
     {
         try {
             return $this->userFactory->create()->loadByUsername($username);
-        } catch(NoSuchEntityException|Exception $e){
+        } catch(Exception $e){
             $this->logger->error($e->getMessage());
-            throw new NoSuchEntityException(__('User not found.'));
+            throw new NoSuchEntityException(__('Error. User was not loaded.'));
         }
     }
 
@@ -134,10 +134,10 @@ class Data extends AbstractHelper
      * @param  string|null $scopeCode
      * @return mixed
      */
-    public function getConfigValue(string $path, string $scopeType = ScopeInterface::SCOPE_STORE, string $scopeCode = null): mixed
+    public function getConfigValue(string $path, string $scopeType = ScopeInterface::SCOPE_STORE): mixed
     {
         try{
-            return $this->scopeConfig->getValue($path, $scopeType, $scopeCode);
+            return $this->scopeConfig->getValue($path, $scopeType);
         }catch (Exception $e){
             $this->logger->error($e->getMessage());
         }

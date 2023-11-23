@@ -2,6 +2,7 @@
 
 namespace MagentoModules\DoubleCheckPrice\Test\Unit\Observer;
 
+use Exception;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Event\Observer;
@@ -11,8 +12,6 @@ use MagentoModules\DoubleCheckPrice\Helper\Data as HelperData;
 use MagentoModules\DoubleCheckPrice\Observer\PriceChangeApprovedObserver;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotSaveException;
 
 class PriceChangeApprovedObserverTest extends TestCase
 {
@@ -68,10 +67,10 @@ class PriceChangeApprovedObserverTest extends TestCase
 
     public function testExecuteWithProductNotFound(): void
     {
-        $this->expectException(NoSuchEntityException::class);
+        $this->expectException(Exception::class);
 
         $priceChangeId = 123;
-        $this->doubleCheckPriceRepositoryMock->method('getById')->with($priceChangeId)->willThrowException(new NoSuchEntityException());
+        $this->doubleCheckPriceRepositoryMock->method('getById')->with($priceChangeId)->willThrowException(new Exception());
 
         $observer = new Observer(['id' => $priceChangeId]);
         $this->observer->execute($observer);

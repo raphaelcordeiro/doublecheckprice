@@ -51,9 +51,6 @@ class EditDoubleCheckPrice implements EditDoubleCheckPriceInterface
             $this->doubleCheckPriceRepository->save($doubleCheckPriceItem);
 
             return $doubleCheckPriceItem;
-        } catch (NoSuchEntityException $e) {
-            $this->logger->error("Failed to edit price change request: Entity ID {$entityId} does not exist.");
-            throw new NoSuchEntityException(__('Item with id "%1" does not exist.', $entityId));
         } catch(Exception $e){
             $this->logger->error('Failed to edit price change request: ' . $e->getMessage());
             throw new Exception(__('Failed to edit price change request: ' . $e->getMessage()));
